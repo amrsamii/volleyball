@@ -1,0 +1,1 @@
+Implementation for [A Hierarchical Deep Temporal Model for Group Activity Recognition. Mostafa S. Ibrahim, Srikanth Muralidharan, Zhiwei Deng, Arash Vahdat, Greg Mori. IEEE Computer Vision and Pattern Recognition 2016](https://www.cs.sfu.ca/~mori/research/papers/ibrahim-cvpr16.pdf).
