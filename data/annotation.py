@@ -11,14 +11,14 @@ class PlayerAnnotation:
 
 
 class Annotation:
-    def __init__(self, frame_id: str, video_id: str, frame_activity: str, player_annotations: list[PlayerAnnotation]):
+    def __init__(self, frame_id: str, video_id: str, group_activity: str, player_annotations: list[PlayerAnnotation]):
         self.frame_id = frame_id
         self.video_id = video_id
-        self.frame_activity = frame_activity
+        self.group_activity = group_activity
         self.player_annotations = player_annotations
 
     def __str__(self):
         return (
-            f"Frame ID: {self.frame_id}, Video ID: {self.video_id}, Frame Activity: {self.frame_activity}, "
+            f"Frame ID: {self.frame_id}, Video ID: {self.video_id}, Group Activity: {self.group_activity}, "
             f"Player Annotations: {list(map(str, self.player_annotations))}"
         )
