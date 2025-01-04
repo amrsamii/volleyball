@@ -43,6 +43,11 @@ train_losses = []
 val_accuracies = []
 val_losses = []
 
+all_labels = []
+all_predictions = []
+val_all_predictions = []
+val_all_labels = []
+
 for epoch in range(epochs):
     train_loss = 0
     total_predictions = 0
@@ -109,21 +114,6 @@ for epoch in range(epochs):
         f"Validation Accuracy: {val_accuracy * 100:2f}%"
     )
 
-    if (epoch + 1) % 10 == 0:
-        cm = confusion_matrix(all_labels, all_predictions)
-        fig, ax = plt.subplots(figsize=(10, 10))
-        ConfusionMatrixDisplay(cm, display_labels=group_activities.keys()).plot(ax=ax).figure_.savefig(
-            f"confusion_matrix/b1/training_{epoch + 1}"
-        )
-        plt.close(fig)
-
-        val_cm = confusion_matrix(val_all_labels, val_all_predictions)
-        fig, ax = plt.subplots(figsize=(10, 10))
-        ConfusionMatrixDisplay(val_cm, display_labels=group_activities.keys()).plot(ax=ax).figure_.savefig(
-            f"confusion_matrix/b1/validation_{epoch + 1}"
-        )
-        plt.close(fig)
-
     if val_accuracy - previous_accuracy >= 0.01:
         epochs_without_improvement = 0
     else:
@@ -135,7 +125,21 @@ for epoch in range(epochs):
 
     previous_accuracy = val_accuracy
 
-torch.save(model.state_dict(), f"trained_models/b1_weights.pth")
+torch.save(model.state_dict(), "trained_models/b1_weights.pth")
+
+cm = confusion_matrix(all_labels, all_predictions)
+fig, ax = plt.subplots(figsize=(10, 10))
+ConfusionMatrixDisplay(cm, display_labels=group_activities.keys()).plot(ax=ax).figure_.savefig(
+    "confusion_matrix/b1_training"
+)
+plt.close(fig)
+
+val_cm = confusion_matrix(val_all_labels, val_all_predictions)
+fig, ax = plt.subplots(figsize=(10, 10))
+ConfusionMatrixDisplay(val_cm, display_labels=group_activities.keys()).plot(ax=ax).figure_.savefig(
+    "confusion_matrix/b1_validation"
+)
+plt.close(fig)
 
 epochs_list = range(1, len(train_losses) + 1)
 
