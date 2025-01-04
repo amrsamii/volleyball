@@ -110,19 +110,6 @@ for epoch in range(epochs):
     )
 
     if (epoch + 1) % 10 == 0:
-        torch.save(
-            {
-                "epoch": epoch,
-                "model_state_dict": model.state_dict(),
-                "optimizer_state_dict": optimizer.state_dict(),
-                "train_accuracies": train_accuracies,
-                "val_accuracies": val_accuracies,
-                "train_losses": train_losses,
-                "val_losses": val_losses,
-            },
-            f"checkpoints/b1/checkpoint_epoch_{epoch + 1}.pth",
-        )
-
         cm = confusion_matrix(all_labels, all_predictions)
         fig, ax = plt.subplots(figsize=(10, 10))
         ConfusionMatrixDisplay(cm, display_labels=group_activities.keys()).plot(ax=ax).figure_.savefig(
@@ -147,6 +134,8 @@ for epoch in range(epochs):
         break
 
     previous_accuracy = val_accuracy
+
+torch.save(model.state_dict(), f"trained_models/b1_weights.pth")
 
 epochs_list = range(1, len(train_losses) + 1)
 
