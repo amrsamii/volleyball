@@ -16,13 +16,12 @@ class ImageClassifier(nn.Module):
 
         # Modify the final fully connected layer
         num_features = self.resnet.fc.in_features
-        self.resnet.fc = nn.Sequential(
-            nn.Linear(num_features, 128),
-            nn.ReLU(),
-            nn.Linear(128, len(group_activities)),
-        )
+        self.resnet.fc = nn.Linear(num_features, len(group_activities))
 
-        # Unfreeze the last three layers
+        # Unfreeze the last four layers
+        for param in self.resnet.layer3.parameters():
+            param.requires_grad = True
+
         for param in self.resnet.layer4.parameters():
             param.requires_grad = True
 
