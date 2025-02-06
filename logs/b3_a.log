@@ -1,0 +1,11 @@
+2025-01-28 02:35:51,199 [INFO] Loading Training dataset...
+2025-01-28 02:39:08,865 [INFO] Training dataset size: 231345
+2025-01-28 02:39:08,865 [INFO] Loading Validation dataset...
+2025-01-28 02:41:04,365 [INFO] Validation dataset size: 143856
+2025-01-28 02:41:04,805 [INFO] Start training...
+2025-01-28 03:12:11,044 [INFO] Epoch 1, Loss: 0.6183574605387936, Accuracy: 79.88%, F1 Score: 0.78, Validation Loss: 0.7500593619454216, Validation Accuracy: 75.89%, Validation F1 Score: 0.75
+2025-01-28 03:43:00,569 [INFO] Epoch 2, Loss: 0.3351129116570348, Accuracy: 88.71%, F1 Score: 0.88, Validation Loss: 0.8448068024908125, Validation Accuracy: 77.16%, Validation F1 Score: 0.75
+2025-01-28 04:13:48,584 [INFO] Epoch 3, Loss: 0.200070739440352, Accuracy: 93.33%, F1 Score: 0.93, Validation Loss: 1.0171203537864937, Validation Accuracy: 76.38%, Validation F1 Score: 0.75
+2025-01-28 04:44:36,752 [INFO] Epoch 4, Loss: 0.1384945310359849, Accuracy: 95.45%, F1 Score: 0.95, Validation Loss: 1.1150324281148307, Validation Accuracy: 75.32%, Validation F1 Score: 0.74
+2025-01-28 05:15:24,493 [INFO] Epoch 5, Loss: 0.10728426956187452, Accuracy: 96.58%, F1 Score: 0.97, Validation Loss: 1.2402390161899366, Validation Accuracy: 75.61%, Validation F1 Score: 0.75
+2025-01-28 05:15:32,597 [INFO] Training completed.
