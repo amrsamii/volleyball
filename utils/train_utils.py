@@ -1,3 +1,5 @@
+import os
+
 import torch
 from matplotlib import pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix, f1_score
@@ -9,14 +11,14 @@ def plot_confusion_matrix(all_labels, all_predictions, val_all_labels, val_all_p
     cm = confusion_matrix(all_labels, all_predictions)
     fig, ax = plt.subplots(figsize=(10, 10))
     ConfusionMatrixDisplay(cm, display_labels=display_labels).plot(ax=ax).figure_.savefig(
-        f"confusion_matrix/{plot_name}_training"
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "confusion_matrix", f"{plot_name}_training")
     )
     plt.close(fig)
 
     val_cm = confusion_matrix(val_all_labels, val_all_predictions)
     fig, ax = plt.subplots(figsize=(10, 10))
     ConfusionMatrixDisplay(val_cm, display_labels=display_labels).plot(ax=ax).figure_.savefig(
-        f"confusion_matrix/{plot_name}_validation"
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "confusion_matrix", f"{plot_name}_validation")
     )
     plt.close(fig)
 
@@ -43,7 +45,7 @@ def plot_loss_accuracy(train_losses, train_accuracies, val_losses, val_accuracie
     plt.legend()
 
     plt.tight_layout()
-    plt.savefig(f"loss_accuracy/{plot_name}.png")
+    plt.savefig(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "loss_accuracy", f"{plot_name}.png"))
 
 
 def train_epoch(
@@ -143,7 +145,8 @@ def train(model, criterion, optimizer, train_data_loader, validation_data_loader
         )
 
     logger.info("Training completed.")
-    torch.save(model.state_dict(), f"trained_models/{name}_weights.pth")
-    logger.info(f"Model weights saved to trained_models/{name}_weights.pth")
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "trained_models", f"{name}_weights.pth")
+    torch.save(model.state_dict(), path)
+    logger.info(f"Model weights saved to {path}")
     plot_confusion_matrix(all_labels, all_predictions, val_all_labels, val_all_predictions, display_labels, name)
     plot_loss_accuracy(train_losses, train_accuracies, val_losses, val_accuracies, name)
