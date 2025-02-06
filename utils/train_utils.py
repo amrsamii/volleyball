@@ -1,6 +1,6 @@
 import torch
 from matplotlib import pyplot as plt
-from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix, f1_score
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -46,7 +46,9 @@ def plot_loss_accuracy(train_losses, train_accuracies, val_losses, val_accuracie
     plt.savefig(f"loss_accuracy/{plot_name}.png")
 
 
-def train_epoch(model, train_data_loader, criterion, optimizer, all_predictions, all_labels) -> tuple[float, float]:
+def train_epoch(
+    model, train_data_loader, criterion, optimizer, all_predictions, all_labels
+) -> tuple[float, float, float]:
     model.train()
 
     train_loss = 0
@@ -73,12 +75,13 @@ def train_epoch(model, train_data_loader, criterion, optimizer, all_predictions,
 
     accuracy = 100 * correct_predictions / total_predictions
     train_loss /= len(train_data_loader)
-    return accuracy, train_loss
+    f1 = f1_score(all_labels, all_predictions, average="weighted")
+    return accuracy, train_loss, f1
 
 
 def evaluate_epoch(
     model, validation_data_loader, criterion, val_all_predictions, val_all_labels
-) -> tuple[float, float]:
+) -> tuple[float, float, float]:
     model.eval()
 
     val_loss = 0
@@ -100,4 +103,47 @@ def evaluate_epoch(
 
     val_accuracy = 100 * val_correct_predictions / val_total_predictions
     val_loss /= len(validation_data_loader)
-    return val_accuracy, val_loss
+    val_f1 = f1_score(val_all_labels, val_all_predictions, average="weighted")
+    return val_accuracy, val_loss, val_f1
+
+
+def train(model, criterion, optimizer, train_data_loader, validation_data_loader, epochs, display_labels, name, logger):
+    logger.info("Start training...")
+
+    train_accuracies = []
+    train_losses = []
+    val_accuracies = []
+    val_losses = []
+    all_labels = []
+    all_predictions = []
+    val_all_predictions = []
+    val_all_labels = []
+
+    for epoch in range(epochs):
+        all_labels = []
+        all_predictions = []
+        val_all_predictions = []
+        val_all_labels = []
+
+        accuracy, train_loss, train_f1 = train_epoch(
+            model, train_data_loader, criterion, optimizer, all_predictions, all_labels
+        )
+        train_accuracies.append(accuracy)
+        train_losses.append(train_loss)
+
+        val_accuracy, val_loss, val_f1 = evaluate_epoch(
+            model, validation_data_loader, criterion, val_all_predictions, val_all_labels
+        )
+        val_accuracies.append(val_accuracy)
+        val_losses.append(val_loss)
+
+        logger.info(
+            f"Epoch {epoch + 1}, Loss: {train_loss}, Accuracy: {accuracy:.2f}%, F1 Score: {train_f1:.2f}, "
+            f"Validation Loss: {val_loss}, Validation Accuracy: {val_accuracy:.2f}%, Validation F1 Score: {val_f1:.2f}"
+        )
+
+    logger.info("Training completed.")
+    torch.save(model.state_dict(), f"trained_models/{name}_weights.pth")
+    logger.info(f"Model weights saved to trained_models/{name}_weights.pth")
+    plot_confusion_matrix(all_labels, all_predictions, val_all_labels, val_all_predictions, display_labels, name)
+    plot_loss_accuracy(train_losses, train_accuracies, val_losses, val_accuracies, name)
