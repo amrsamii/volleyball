@@ -1,0 +1,16 @@
+2025-02-06 02:27:52,178 [INFO] Loading Training dataset...
+2025-02-06 02:27:52,199 [INFO] Training dataset size: 19368
+2025-02-06 02:27:52,199 [INFO] Loading Validation dataset...
+2025-02-06 02:27:52,212 [INFO] Validation dataset size: 12069
+2025-02-06 02:27:52,546 [INFO] Start training...
+2025-02-06 02:40:03,844 [INFO] Epoch 1, Loss: 0.5830247321409888, Accuracy: 79.50%, F1 Score: 0.80, Validation Loss: 1.0801388579878697, Validation Accuracy: 67.09%, Validation F1 Score: 0.67
+2025-02-06 02:51:58,812 [INFO] Epoch 2, Loss: 0.08862165187933105, Accuracy: 97.51%, F1 Score: 0.98, Validation Loss: 1.1241932852000587, Validation Accuracy: 70.03%, Validation F1 Score: 0.70
+2025-02-06 03:03:42,795 [INFO] Epoch 3, Loss: 0.05272427499793204, Accuracy: 98.36%, F1 Score: 0.98, Validation Loss: 1.2001850452620464, Validation Accuracy: 71.40%, Validation F1 Score: 0.71
+2025-02-06 03:14:43,810 [INFO] Epoch 4, Loss: 0.04264612442858611, Accuracy: 98.66%, F1 Score: 0.99, Validation Loss: 1.323065331642023, Validation Accuracy: 73.39%, Validation F1 Score: 0.73
+2025-02-06 03:25:36,953 [INFO] Epoch 5, Loss: 0.04070781665615942, Accuracy: 98.75%, F1 Score: 0.99, Validation Loss: 1.2574003846939725, Validation Accuracy: 73.30%, Validation F1 Score: 0.73
+2025-02-06 03:36:18,241 [INFO] Epoch 6, Loss: 0.033684479141772555, Accuracy: 98.94%, F1 Score: 0.99, Validation Loss: 1.2982865073722372, Validation Accuracy: 73.74%, Validation F1 Score: 0.74
+2025-02-06 03:47:01,954 [INFO] Epoch 7, Loss: 0.02313478050121193, Accuracy: 99.31%, F1 Score: 0.99, Validation Loss: 1.6193331147393537, Validation Accuracy: 71.41%, Validation F1 Score: 0.71
+2025-02-06 03:57:39,417 [INFO] Epoch 8, Loss: 0.026614723280107302, Accuracy: 99.24%, F1 Score: 0.99, Validation Loss: 1.5520859298561598, Validation Accuracy: 70.25%, Validation F1 Score: 0.70
+2025-02-06 04:08:15,823 [INFO] Epoch 9, Loss: 0.0246937398394146, Accuracy: 99.28%, F1 Score: 0.99, Validation Loss: 1.5528611328406543, Validation Accuracy: 69.89%, Validation F1 Score: 0.70
+2025-02-06 04:18:53,169 [INFO] Epoch 10, Loss: 0.02331319607820757, Accuracy: 99.24%, F1 Score: 0.99, Validation Loss: 1.4152227166846971, Validation Accuracy: 73.71%, Validation F1 Score: 0.74
+2025-02-06 04:18:53,169 [INFO] Training completed.
