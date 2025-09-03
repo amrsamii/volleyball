@@ -2,19 +2,16 @@ import os
 import pickle
 
 import torch
-from torch import optim
-from torch.nn import CrossEntropyLoss
+from torch import nn, optim
 from torch.utils.data import DataLoader
 
 from constants import group_activities, num_features
 from datasets.features_dataset import FeaturesDataset
-from models.baseline4 import Baseline4
+from models.baseline5 import Baseline5
 from utils.logger import get_logger
 from utils.train_utils import evaluate, train
 
-logger = get_logger("b4.log")
-
-device = "cuda" if torch.cuda.is_available() else "cpu"
+logger = get_logger("b5.log")
 
 batch_size = 64
 
@@ -42,10 +39,11 @@ test_dataset = FeaturesDataset(test_features)
 test_data_loader = DataLoader(test_dataset, batch_size, shuffle=False)
 logger.info(f"Test dataset size: {len(test_dataset)}")
 
-model = Baseline4(num_features, 1024, 1, len(group_activities)).to(device)
-criterion = CrossEntropyLoss()
-optimizer = optim.AdamW(model.parameters(), lr=0.0001)
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
+model = Baseline5(num_features, 1024, 1, len(group_activities)).to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr=0.0001)
 train(
     model,
     criterion,
@@ -54,7 +52,7 @@ train(
     validation_data_loader,
     30,
     group_activities.keys(),
-    "b4",
+    "b5",
     logger,
 )
 
