@@ -8,7 +8,7 @@ from PIL import Image
 from torchvision import transforms
 
 from constants import actions, num_features
-from models.person_classifier import PersonClassifier
+from models.baseline3_a import Baseline3A
 from utils.data_utils import load_annotations, splits
 from utils.logger import get_logger
 
@@ -30,8 +30,8 @@ transform = transforms.Compose(
     ]
 )
 
-features_model = PersonClassifier(len(actions))
-features_model.load_state_dict(torch.load("trained_models/b3_a_weights.pth", weights_only=True))
+features_model = Baseline3A(len(actions))
+features_model.load_state_dict(torch.load("trained_models/b3_a_2_weights.pth", weights_only=True))
 features_model = nn.Sequential(*list(features_model.children())[:-1]).to(device)
 features_model.eval()
 
@@ -61,20 +61,20 @@ with torch.no_grad():
                                 box.y2,
                             )
                         )
-                        cropped_images.append(transform(cropped_image).unsqueeze(0))  # Add batch dimension
+                        cropped_images.append(transform(cropped_image))
 
-                    cropped_images = torch.cat(cropped_images).to(device)
+                    cropped_images = torch.stack(cropped_images).to(device)
                     dnn_repr = features_model(cropped_images)
-                    dnn_repr = dnn_repr.view(1, cropped_images.size(0), -1)
-                    max_pool = nn.AdaptiveMaxPool2d((1, num_features))
-                    dnn_repr = max_pool(dnn_repr)
-                    dnn_repr = torch.squeeze(dnn_repr)
-                    clip_features.append(dnn_repr)
+                    dnn_repr = dnn_repr.view(cropped_images.size(0), -1)
 
-                clip_features = torch.cat(clip_features)
+                    while dnn_repr.shape[0] < 12:
+                        dnn_repr = torch.cat((dnn_repr, torch.zeros(1, num_features).to(device)))
+                    clip_features.append(dnn_repr.cpu())
+
+                clip_features = torch.stack(clip_features)
                 split_features[video_id][clip_id] = {"features": clip_features, "label": clip_activity}
 
-        pkl_file_path = os.path.join(features_dir, f"{split}_features.pkl")
+        pkl_file_path = os.path.join(features_dir, f"{split}_features_2.pkl")
         with open(pkl_file_path, "wb") as f:
             pickle.dump(split_features, f)
 
