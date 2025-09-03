@@ -111,7 +111,6 @@ def evaluate_epoch(
 
 def train(model, criterion, optimizer, train_data_loader, validation_data_loader, epochs, display_labels, name, logger):
     logger.info("Start training...")
-    # TODO: LR Scheduler
 
     train_accuracies = []
     train_losses = []

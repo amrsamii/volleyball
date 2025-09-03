@@ -1,27 +1,30 @@
-2025-02-04 02:39:28,266 [INFO] Loading Training dataset...
-2025-02-04 02:39:28,291 [INFO] Training dataset size: 19368
-2025-02-04 02:39:28,291 [INFO] Loading Validation dataset...
-2025-02-04 02:39:28,360 [INFO] Validation dataset size: 12069
-2025-02-04 02:39:28,769 [INFO] Start training...
-2025-02-04 02:39:30,747 [INFO] Epoch 1, Loss: 0.9902438690560093, Accuracy: 69.24%, F1 Score: 0.69, Validation Loss: 0.9660885633614958, Validation Accuracy: 71.02%, Validation F1 Score: 0.70
-2025-02-04 02:39:32,603 [INFO] Epoch 2, Loss: 0.5003143697485278, Accuracy: 87.14%, F1 Score: 0.87, Validation Loss: 0.823821305834427, Validation Accuracy: 73.20%, Validation F1 Score: 0.73
-2025-02-04 02:39:34,404 [INFO] Epoch 3, Loss: 0.32644386948532006, Accuracy: 91.72%, F1 Score: 0.92, Validation Loss: 0.7873917085626138, Validation Accuracy: 73.37%, Validation F1 Score: 0.73
-2025-02-04 02:39:36,170 [INFO] Epoch 4, Loss: 0.22975643006193364, Accuracy: 94.56%, F1 Score: 0.95, Validation Loss: 0.7596532989825521, Validation Accuracy: 73.83%, Validation F1 Score: 0.74
-2025-02-04 02:39:38,149 [INFO] Epoch 5, Loss: 0.1669079060159107, Accuracy: 96.41%, F1 Score: 0.96, Validation Loss: 0.7544961307375204, Validation Accuracy: 74.89%, Validation F1 Score: 0.75
-2025-02-04 02:39:39,879 [INFO] Epoch 6, Loss: 0.1262814674292854, Accuracy: 97.47%, F1 Score: 0.97, Validation Loss: 0.7815191623749872, Validation Accuracy: 73.88%, Validation F1 Score: 0.74
-2025-02-04 02:39:41,848 [INFO] Epoch 7, Loss: 0.09419596775530195, Accuracy: 98.35%, F1 Score: 0.98, Validation Loss: 0.804200317375559, Validation Accuracy: 74.06%, Validation F1 Score: 0.74
-2025-02-04 02:39:43,575 [INFO] Epoch 8, Loss: 0.07322423982590733, Accuracy: 98.65%, F1 Score: 0.99, Validation Loss: 0.8496566287897251, Validation Accuracy: 73.10%, Validation F1 Score: 0.73
-2025-02-04 02:39:45,514 [INFO] Epoch 9, Loss: 0.06154653663584108, Accuracy: 98.90%, F1 Score: 0.99, Validation Loss: 0.8494385115940262, Validation Accuracy: 73.30%, Validation F1 Score: 0.73
-2025-02-04 02:39:47,308 [INFO] Epoch 10, Loss: 0.05393694231145256, Accuracy: 99.06%, F1 Score: 0.99, Validation Loss: 0.9278482834774034, Validation Accuracy: 72.23%, Validation F1 Score: 0.72
-2025-02-04 02:39:49,345 [INFO] Epoch 11, Loss: 0.043537269592309746, Accuracy: 99.21%, F1 Score: 0.99, Validation Loss: 0.8878976313308591, Validation Accuracy: 73.68%, Validation F1 Score: 0.74
-2025-02-04 02:39:51,055 [INFO] Epoch 12, Loss: 0.03664623233013273, Accuracy: 99.45%, F1 Score: 0.99, Validation Loss: 0.9178448655499668, Validation Accuracy: 72.96%, Validation F1 Score: 0.73
-2025-02-04 02:39:52,947 [INFO] Epoch 13, Loss: 0.03131592850179316, Accuracy: 99.51%, F1 Score: 1.00, Validation Loss: 0.9907658041095134, Validation Accuracy: 71.96%, Validation F1 Score: 0.72
-2025-02-04 02:39:54,696 [INFO] Epoch 14, Loss: 0.03056366914397616, Accuracy: 99.43%, F1 Score: 0.99, Validation Loss: 0.9747568373149508, Validation Accuracy: 72.68%, Validation F1 Score: 0.73
-2025-02-04 02:39:56,585 [INFO] Epoch 15, Loss: 0.030668781301861157, Accuracy: 99.39%, F1 Score: 0.99, Validation Loss: 1.068499318407799, Validation Accuracy: 71.09%, Validation F1 Score: 0.71
-2025-02-04 02:39:58,327 [INFO] Epoch 16, Loss: 0.028371259604700574, Accuracy: 99.31%, F1 Score: 0.99, Validation Loss: 1.1456289562598738, Validation Accuracy: 69.53%, Validation F1 Score: 0.69
-2025-02-04 02:40:00,194 [INFO] Epoch 17, Loss: 0.024359248281170677, Accuracy: 99.46%, F1 Score: 0.99, Validation Loss: 1.0625768487573302, Validation Accuracy: 72.19%, Validation F1 Score: 0.72
-2025-02-04 02:40:02,049 [INFO] Epoch 18, Loss: 0.02224247207520868, Accuracy: 99.52%, F1 Score: 1.00, Validation Loss: 1.0020978893325836, Validation Accuracy: 73.43%, Validation F1 Score: 0.73
-2025-02-04 02:40:04,020 [INFO] Epoch 19, Loss: 0.019270730891077482, Accuracy: 99.61%, F1 Score: 1.00, Validation Loss: 1.0892901928829295, Validation Accuracy: 72.29%, Validation F1 Score: 0.72
-2025-02-04 02:40:05,920 [INFO] Epoch 20, Loss: 0.01836078029460959, Accuracy: 99.65%, F1 Score: 1.00, Validation Loss: 1.077601504891559, Validation Accuracy: 72.58%, Validation F1 Score: 0.72
-2025-02-04 02:40:05,920 [INFO] Training completed.
-2025-02-04 02:40:05,931 [INFO] Model weights saved to trained_models/b3_b_weights.pth
+2025-04-02 20:53:38,604 [INFO] Loading Training dataset...
+2025-04-02 20:53:38,605 [INFO] Training dataset size: 2152
+2025-04-02 20:53:38,605 [INFO] Loading Validation dataset...
+2025-04-02 20:53:38,606 [INFO] Validation dataset size: 1341
+2025-04-02 20:53:38,606 [INFO] Loading Test dataset...
+2025-04-02 20:53:38,606 [INFO] Test dataset size: 1337
+2025-04-02 20:53:39,025 [INFO] Start training...
+2025-04-02 20:53:40,152 [INFO] Epoch 1, Loss: 1.66992007634219, Accuracy: 38.01%, F1 Score: 0.38, Validation Loss: 1.6261492002578009, Validation Accuracy: 57.57%, Validation F1 Score: 0.58
+2025-04-02 20:53:41,168 [INFO] Epoch 2, Loss: 1.186205720200258, Accuracy: 64.31%, F1 Score: 0.64, Validation Loss: 1.3375081505094255, Validation Accuracy: 62.71%, Validation F1 Score: 0.62
+2025-04-02 20:53:42,193 [INFO] Epoch 3, Loss: 0.9779499190695146, Accuracy: 74.21%, F1 Score: 0.74, Validation Loss: 1.2110263449805123, Validation Accuracy: 65.47%, Validation F1 Score: 0.65
+2025-04-02 20:53:43,333 [INFO] Epoch 4, Loss: 0.850020657567417, Accuracy: 79.88%, F1 Score: 0.80, Validation Loss: 1.1324249846594674, Validation Accuracy: 70.32%, Validation F1 Score: 0.70
+2025-04-02 20:53:44,399 [INFO] Epoch 5, Loss: 0.7464995138785419, Accuracy: 83.27%, F1 Score: 0.83, Validation Loss: 1.0518781627927507, Validation Accuracy: 71.89%, Validation F1 Score: 0.71
+2025-04-02 20:53:45,431 [INFO] Epoch 6, Loss: 0.6691966407439288, Accuracy: 85.41%, F1 Score: 0.85, Validation Loss: 0.9991975596972874, Validation Accuracy: 69.87%, Validation F1 Score: 0.69
+2025-04-02 20:53:46,453 [INFO] Epoch 7, Loss: 0.5933700598338071, Accuracy: 88.43%, F1 Score: 0.88, Validation Loss: 0.9324497665677752, Validation Accuracy: 73.97%, Validation F1 Score: 0.74
+2025-04-02 20:53:47,476 [INFO] Epoch 8, Loss: 0.543774095528266, Accuracy: 88.48%, F1 Score: 0.88, Validation Loss: 0.876395026842753, Validation Accuracy: 74.65%, Validation F1 Score: 0.75
+2025-04-02 20:53:48,495 [INFO] Epoch 9, Loss: 0.4902647944057689, Accuracy: 90.57%, F1 Score: 0.90, Validation Loss: 0.8693457359359378, Validation Accuracy: 75.39%, Validation F1 Score: 0.75
+2025-04-02 20:53:49,509 [INFO] Epoch 10, Loss: 0.44373049104914947, Accuracy: 91.40%, F1 Score: 0.91, Validation Loss: 0.8099700240861802, Validation Accuracy: 76.14%, Validation F1 Score: 0.75
+2025-04-02 20:53:50,613 [INFO] Epoch 11, Loss: 0.4001663309686324, Accuracy: 93.26%, F1 Score: 0.93, Validation Loss: 0.8067148271061125, Validation Accuracy: 75.84%, Validation F1 Score: 0.76
+2025-04-02 20:53:51,633 [INFO] Epoch 12, Loss: 0.36622536445365234, Accuracy: 93.77%, F1 Score: 0.94, Validation Loss: 0.7811561184270042, Validation Accuracy: 75.69%, Validation F1 Score: 0.76
+2025-04-02 20:53:52,641 [INFO] Epoch 13, Loss: 0.3431573751218179, Accuracy: 93.87%, F1 Score: 0.94, Validation Loss: 0.7762784503755116, Validation Accuracy: 75.39%, Validation F1 Score: 0.75
+2025-04-02 20:53:53,663 [INFO] Epoch 14, Loss: 0.3086175699444378, Accuracy: 95.17%, F1 Score: 0.95, Validation Loss: 0.7724559009075165, Validation Accuracy: 75.91%, Validation F1 Score: 0.76
+2025-04-02 20:53:54,683 [INFO] Epoch 15, Loss: 0.3006083378020455, Accuracy: 95.07%, F1 Score: 0.95, Validation Loss: 0.7601702965441204, Validation Accuracy: 75.47%, Validation F1 Score: 0.76
+2025-04-02 20:53:55,880 [INFO] Epoch 16, Loss: 0.260337398332708, Accuracy: 96.33%, F1 Score: 0.96, Validation Loss: 0.7422637684004647, Validation Accuracy: 77.63%, Validation F1 Score: 0.77
+2025-04-02 20:53:56,979 [INFO] Epoch 17, Loss: 0.24262193984845104, Accuracy: 96.47%, F1 Score: 0.96, Validation Loss: 0.7481514925048465, Validation Accuracy: 75.99%, Validation F1 Score: 0.76
+2025-04-02 20:53:58,145 [INFO] Epoch 18, Loss: 0.22034264312070959, Accuracy: 97.26%, F1 Score: 0.97, Validation Loss: 0.7332272643134707, Validation Accuracy: 77.11%, Validation F1 Score: 0.77
+2025-04-02 20:53:59,240 [INFO] Epoch 19, Loss: 0.21639500602203257, Accuracy: 96.75%, F1 Score: 0.97, Validation Loss: 0.7177810257389432, Validation Accuracy: 76.96%, Validation F1 Score: 0.77
+2025-04-02 20:54:00,328 [INFO] Epoch 20, Loss: 0.1937808319926262, Accuracy: 97.86%, F1 Score: 0.98, Validation Loss: 0.732894153822036, Validation Accuracy: 75.62%, Validation F1 Score: 0.75
+2025-04-02 20:54:00,328 [INFO] Training completed.
+2025-04-02 20:54:00,344 [INFO] Model weights saved to /home/amr/PycharmProjects/volleyball/utils/../trained_models/b3_b_weights.pth
+2025-04-02 20:54:01,105 [INFO] Test Loss: 0.5858829078220186, Test Accuracy: 82.12%, Test F1 Score: 0.82

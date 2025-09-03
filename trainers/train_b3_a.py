@@ -5,10 +5,10 @@ from torchvision import transforms
 
 from constants import actions
 from datasets.person_dataset import PersonDataset
-from models.person_classifier import PersonClassifier
+from models.baseline3_a import Baseline3A
 from utils.data_utils import load_annotations
 from utils.logger import get_logger
-from utils.train_utils import train
+from utils.train_utils import evaluate, train
 
 logger = get_logger("b3_a.log")
 
@@ -39,9 +39,15 @@ validation_dataset = PersonDataset(videos_dir, annotations, "val", transform=tra
 validation_data_loader = DataLoader(validation_dataset, batch_size, shuffle=False)
 logger.info(f"Validation dataset size: {len(validation_dataset)}")
 
-model = PersonClassifier(len(actions)).to(device)
+logger.info("Loading Test dataset...")
+test_dataset = PersonDataset(videos_dir, annotations, "test", transform=transform)
+test_data_loader = DataLoader(test_dataset, batch_size, shuffle=False)
+logger.info(f"Test dataset size: {len(test_dataset)}")
+
+model = Baseline3A(len(actions)).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.AdamW(model.parameters(), lr=0.0001)
+
 train(
     model,
     criterion,
@@ -53,3 +59,5 @@ train(
     "b3_a",
     logger,
 )
+
+evaluate(model, criterion, test_data_loader, logger)

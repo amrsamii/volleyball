@@ -8,9 +8,9 @@ from torch.utils.data import DataLoader
 
 from constants import group_activities, num_features
 from datasets.features_dataset import FeaturesDataset
-from models.features_classifier import FeaturesClassifier
+from models.baseline3_b import Baseline3B
 from utils.logger import get_logger
-from utils.train_utils import train
+from utils.train_utils import evaluate, train
 
 logger = get_logger("b3_b.log")
 
@@ -24,6 +24,8 @@ with open(os.path.join(features_dir, "train_features.pkl"), "rb") as f:
     train_features = pickle.load(f)
 with open(os.path.join(features_dir, "val_features.pkl"), "rb") as f:
     val_features = pickle.load(f)
+with open(os.path.join(features_dir, "test_features.pkl"), "rb") as f:
+    test_features = pickle.load(f)
 
 logger.info("Loading Training dataset...")
 train_dataset = FeaturesDataset(train_features)
@@ -35,12 +37,17 @@ validation_dataset = FeaturesDataset(val_features)
 validation_data_loader = DataLoader(validation_dataset, batch_size, shuffle=False)
 logger.info(f"Validation dataset size: {len(validation_dataset)}")
 
-classifier_model = FeaturesClassifier(num_features, len(group_activities)).to(device)
+logger.info("Loading Test dataset...")
+test_dataset = FeaturesDataset(test_features)
+test_data_loader = DataLoader(test_dataset, batch_size, shuffle=False)
+logger.info(f"Test dataset size: {len(test_dataset)}")
+
+model = Baseline3B(num_features, len(group_activities)).to(device)
 criterion = CrossEntropyLoss()
-optimizer = optim.AdamW(classifier_model.parameters(), lr=0.0001)
+optimizer = optim.AdamW(model.parameters(), lr=0.0001)
 
 train(
-    classifier_model,
+    model,
     criterion,
     optimizer,
     train_data_loader,
@@ -50,3 +57,5 @@ train(
     "b3_b",
     logger,
 )
+
+evaluate(model, criterion, test_data_loader, logger)

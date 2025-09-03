@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import Dataset
 
-from constants import group_activities, num_features
+from constants import group_activities
 
 
 class FeaturesDataset(Dataset):
@@ -11,14 +11,12 @@ class FeaturesDataset(Dataset):
             for clip_id in features[video_id]:
                 clip_activity = features[video_id][clip_id]["label"]
                 clip_features = features[video_id][clip_id]["features"]
-                frame_features = torch.split(clip_features, num_features)
-                for frame_feature in frame_features:
-                    self.data.append((frame_feature, clip_activity))
+                self.data.append((clip_features, clip_activity))
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, idx: int):
-        image_features = self.data[idx][0]
+        clip_features = self.data[idx][0]
         label = torch.tensor(group_activities[self.data[idx][1]])
-        return image_features, label
+        return clip_features, label

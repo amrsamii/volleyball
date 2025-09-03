@@ -17,10 +17,8 @@ class PersonDataset(Dataset):
             for clip_id in annotation.clip_activities:
                 for frame_id, boxes in annotation.clip_annotations[clip_id].frame_annotations.items():
                     image_path = os.path.join(videos_dir, str(video_id), clip_id, f"{frame_id}.jpg")
-                    image = Image.open(image_path)
                     for box in boxes:
-                        cropped_image = image.crop((box.x1, box.y1, box.x2, box.y2))
-                        self.data.append((cropped_image, box.action))
+                        self.data.append((image_path, box))
 
         self.transform = transform
 
@@ -28,9 +26,12 @@ class PersonDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx: int):
-        image = self.data[idx][0]
+        image_path, box = self.data[idx]
+        image = Image.open(image_path)
+        image = image.crop((box.x1, box.y1, box.x2, box.y2))
+
         # No need for one-hot encoding because we are using CrossEntropyLoss which expects class indices
-        label = torch.tensor(actions[self.data[idx][1]])
+        label = torch.tensor(actions[box.action])
 
         if self.transform:
             image = self.transform(image)

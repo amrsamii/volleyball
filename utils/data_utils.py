@@ -11,13 +11,10 @@ splits = {
 
 
 class Box:
-    def __init__(self, x1: int, y1: int, x2: int, y2: int, frame_id: str, action: str):
-        self.x1 = x1
-        self.y1 = y1
-        self.x2 = x2
-        self.y2 = y2
-        self.frame_id = frame_id
-        self.action = action
+    def __init__(self, data: list[str]):
+        self.player_id, self.x1, self.y1, self.x2, self.y2 = map(int, data[:5])
+        self.frame_id = data[5]
+        self.action = data[-1]
 
 
 class ClipAnnotation:
@@ -39,16 +36,18 @@ def _load_clip_annotation(clip_id: str, tracking_annotations_path: str) -> ClipA
     player_boxes = defaultdict(list)
     with open(tracking_annotations_path) as f:
         for line in f:
-            data = line.split()
-            player_id, x1, y1, x2, y2 = map(int, data[:5])
-            frame_id = data[5]
-            action = data[-1]
-            player_boxes[player_id].append(Box(x1, y1, x2, y2, frame_id, action))
+            box = Box(line.split())
+            if box.player_id > 11:
+                break
+            player_boxes[box.player_id].append(box)
 
     frame_annotations = defaultdict(list)
     for boxes in player_boxes.values():
         for box in boxes[6:15]:
             frame_annotations[box.frame_id].append(box)
+
+    for boxes in frame_annotations.values():
+        boxes.sort(key=lambda box: (box.x1, box.x2))
 
     return ClipAnnotation(clip_id, frame_annotations)
 
