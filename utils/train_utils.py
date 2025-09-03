@@ -111,6 +111,7 @@ def evaluate_epoch(
 
 def train(model, criterion, optimizer, train_data_loader, validation_data_loader, epochs, display_labels, name, logger):
     logger.info("Start training...")
+    # TODO: LR Scheduler
 
     train_accuracies = []
     train_losses = []
@@ -150,3 +151,9 @@ def train(model, criterion, optimizer, train_data_loader, validation_data_loader
     logger.info(f"Model weights saved to {path}")
     plot_confusion_matrix(all_labels, all_predictions, val_all_labels, val_all_predictions, display_labels, name)
     plot_loss_accuracy(train_losses, train_accuracies, val_losses, val_accuracies, name)
+
+
+def evaluate(model, criterion, test_data_loader, logger):
+    test_accuracy, test_loss, test_f1 = evaluate_epoch(model, test_data_loader, criterion, [], [])
+
+    logger.info(f"Test Loss: {test_loss}, Test Accuracy: {test_accuracy:.2f}%, Test F1 Score: {test_f1:.2f}")

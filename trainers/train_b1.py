@@ -5,10 +5,10 @@ from torchvision import transforms
 
 from constants import group_activities
 from datasets.group_dataset import GroupDataset
-from models.group_classifier import GroupClassifier
+from models.baseline1 import Baseline1
 from utils.data_utils import load_annotations
 from utils.logger import get_logger
-from utils.train_utils import train
+from utils.train_utils import evaluate, train
 
 logger = get_logger("b1.log")
 
@@ -40,7 +40,12 @@ validation_dataset = GroupDataset(videos_dir, annotations, "val", transform=tran
 validation_data_loader = DataLoader(validation_dataset, batch_size, shuffle=False)
 logger.info(f"Validation dataset size: {len(validation_dataset)}")
 
-model = GroupClassifier(len(group_activities)).to(device)
+logger.info("Loading Test dataset...")
+test_dataset = GroupDataset(videos_dir, annotations, "test", transform=transform)
+test_data_loader = DataLoader(test_dataset, batch_size, shuffle=False)
+logger.info(f"Test dataset size: {len(test_dataset)}")
+
+model = Baseline1(len(group_activities)).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.AdamW(model.parameters(), lr=0.0001)
 train(
@@ -54,3 +59,5 @@ train(
     "b1",
     logger,
 )
+
+evaluate(model, criterion, test_data_loader, logger)
