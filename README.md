@@ -23,16 +23,16 @@ The implementation includes **8 different baseline models** that progressively i
 
 ### Model Variants
 
-| Model | Description | Architecture |
-|-------|-------------|--------------|
-| **Baseline 1** | Simple ResNet-50 | Single CNN for frame-level classification |
-| **Baseline 3A** | Feature extraction model | ResNet-based feature extractor for individual actions |
-| **Baseline 3B** | Enhanced feature model | Improved version of 3A with better feature representation |
-| **Baseline 4** | Temporal modeling | LSTM-based temporal sequence modeling |
-| **Baseline 5** | Multi-stream approach | Multiple input streams for different modalities |
-| **Baseline 6** | Attention mechanism | Attention-based temporal modeling |
-| **Baseline 7** | Hierarchical modeling | Multi-level temporal and spatial modeling |
-| **Baseline 8** | Advanced LSTM | Dual LSTM with team-based aggregation |
+| Model | Description | Architecture | Test Accuracy |
+|-------|-------------|--------------|---------------|
+| **Baseline 1** | Simple ResNet-50 | Single CNN for frame-level classification | **74.83%** |
+| **Baseline 3A** | Feature extraction model | ResNet-based feature extractor for individual actions | **78.27%** |
+| **Baseline 3B** | Enhanced feature model | Improved version of 3A with better feature representation | **82.12%** |
+| **Baseline 4** | Temporal modeling | LSTM-based temporal sequence modeling | **81.08%** |
+| **Baseline 5** | Multi-stream approach | Multiple input streams for different modalities | **83.40%** |
+| **Baseline 6** | Attention mechanism | Attention-based temporal modeling | **77.86%** |
+| **Baseline 7** | Hierarchical modeling | Multi-level temporal and spatial modeling | **86.46%** |
+| **Baseline 8** | Advanced LSTM | Dual LSTM with team-based aggregation | **89.08%** |
 
 ### Key Components
 
@@ -53,12 +53,8 @@ The system works with volleyball video datasets containing:
 
 ### Prerequisites
 
-- Python 3.8+
-- PyTorch
-- torchvision
-- PIL (Pillow)
-- matplotlib
-- scikit-learn
+- Python 3.13.7+
+- [uv](https://docs.astral.sh/uv/) (Python package manager)
 - CUDA (recommended for training)
 
 ### Installation
@@ -69,10 +65,29 @@ git clone <repository-url>
 cd volleyball
 ```
 
-2. Install dependencies:
+2. Install uv (if not already installed):
 ```bash
-pip install torch torchvision pillow matplotlib scikit-learn
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
+
+3. Install dependencies using uv:
+```bash
+uv sync
+```
+
+This will automatically:
+- Create a virtual environment
+- Install all dependencies from `pyproject.toml`
+- Set up the project for development
+
+### Project Configuration
+
+The project uses modern Python packaging with `pyproject.toml`:
+
+- **Dependencies**: PyTorch, torchvision, Pillow, matplotlib, scikit-learn
+- **Python Version**: 3.13.7+
+- **Code Quality**: Ruff for linting and formatting
+- **Package Manager**: uv for fast dependency resolution
 
 ### Project Structure
 
@@ -97,7 +112,7 @@ volleyball/
 Extract deep features from video frames using pre-trained models:
 
 ```bash
-python extract_features.py
+uv run python extract_features.py
 ```
 
 This script:
@@ -112,10 +127,10 @@ Train any of the 8 baseline models:
 
 ```bash
 # Train Baseline 1 (ResNet-50)
-python trainers/train_b1.py
+uv run python trainers/train_b1.py
 
 # Train Baseline 8 (Advanced LSTM)
-python trainers/train_b8.py
+uv run python trainers/train_b8.py
 ```
 
 ### 3. Model Evaluation
@@ -127,7 +142,23 @@ Models are automatically evaluated on test sets during training, generating:
 
 ## 📈 Results & Performance
 
-The repository includes comprehensive evaluation results:
+### Performance Summary
+
+The repository includes comprehensive evaluation results with **Baseline 8** achieving the highest test accuracy of **89.08%**:
+
+- **Best Performing Model**: Baseline 8 (Advanced LSTM) - 89.08% accuracy
+- **Strong Temporal Models**: Baseline 7 (86.46%) and Baseline 5 (83.40%) show the importance of temporal modeling
+- **Feature Quality Impact**: Baseline 3B (82.12%) outperforms 3A (78.27%), demonstrating improved feature representation
+- **Baseline Comparison**: Simple ResNet-50 (Baseline 1) achieves 74.83%, providing a solid foundation
+
+### Key Insights
+
+1. **Temporal Modeling is Critical**: Models with LSTM components (B4, B5, B7, B8) consistently outperform frame-based approaches
+2. **Team-based Aggregation Works**: Baseline 8's dual LSTM with team-based feature aggregation achieves the best results
+3. **Hierarchical Approaches Excel**: Multi-level modeling (B7, B8) captures both individual and group dynamics effectively
+4. **Feature Quality Matters**: Enhanced feature extraction (B3B vs B3A) provides measurable improvements
+
+### Available Results
 
 - **Training Curves**: Loss and accuracy plots for all baselines
 - **Confusion Matrices**: Detailed classification performance analysis
@@ -144,7 +175,29 @@ This implementation provides:
 4. **Spatial Relationships**: Team-based feature aggregation
 5. **Reproducible Results**: Complete training and evaluation pipeline
 
-## 🛠️ Customization
+## 🛠️ Development
+
+### Development Workflow
+
+```bash
+# Activate the virtual environment
+uv shell
+
+# Run scripts in the virtual environment
+uv run python script.py
+
+# Add new dependencies
+uv add package-name
+
+# Update dependencies
+uv sync
+
+# Run linting and formatting
+uv run ruff check .
+uv run ruff format .
+```
+
+### Customization
 
 ### Adding New Models
 
